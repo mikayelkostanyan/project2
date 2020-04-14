@@ -1,6 +1,9 @@
 from sympy import *
 
+
+
 class Pos:
+
     a1 = 0
     F1 = 0
     T = 0
@@ -10,6 +13,9 @@ class Pos:
 
     def init(self, t, M1, M2, M3, distanceBetweenM1_M3, Myu1, Myu2, Myu3, function, startingXPositionM1,
              startingXPositionM2, v0=0):
+
+        self.t = t
+
         self.M1 = M1
         self.M2 = M2
         self.M3 = M3
@@ -18,12 +24,14 @@ class Pos:
         self.Myu3 = Myu3
         self.v0 = v0
         self.g = 10
-        self.t = t
         self.startingXPositionM1 = startingXPositionM1
         self.startingXPositionM2 = startingXPositionM2
         self.startingXPositionM3 = distanceBetweenM1_M3 + startingXPositionM1
         self.distanceBetweenM1_M3 = distanceBetweenM1_M3
+
         self.F = function(t)
+
+
 
     def findVariables(self):
         a1 = symbols('a1')
@@ -57,21 +65,18 @@ class Pos:
         XPositionM1 = 1 / 2 * (self.a1 * self.t  2) + self.v0 * self.t + self.startingXPositionM1
         XPositionM2 = 1 / 2 * (self.a2 * self.t  2) + self.v0 * self.t + self.startingXPositionM2
         XPositionM3 = 1 / 2 * (self.a3x * self.t  2) + self.v0 * self.t + self.startingXPositionM3
-        YPositionM3 = 1 / 2 * (self.a3y * self.t ** 2) + self.v0 * self.t + 0
+        YPositionM3 = 1 / 2 * (self.a3y * self.t  2) + self.v0 * self.t + 0
 
         print("XPositionM1 = ", XPositionM1, ". XPositionM2 = ", XPositionM2, ". XPositionM3 = ", XPositionM3,
               ". YPositionM3 = ", YPositionM3)
 
 
-timeIntervals = [0, 5, 10, 15, 20, 25]
+timeIntervals = [0, 5, 10, 15]
 
 for t in timeIntervals:
-    pos = Pos(t, 0.8, 0.1, 0.6, 10, 6, 1, 9, lambda t: 3 * t - 11, 0, 0, 0)
+    pos = Pos(t, 10, 6, 1, 9, 0.8, 0.1, 0.60, lambda t: 3 * t - 11, 0, 0, 0)
     print("Example 1")
     pos.calculatePosition()
-    pos2 = Pos(t, 4, 6, 0.9, 10, 9, 11, 0, lambda t: 5 * t - 7, 1, 1, 0)
+    pos2 = Pos(t, 4, 6, 3, 5, 0.5, 0.7, 0.3, lambda t: 5 * t - 7, 1, 1, 0)
     print("Example 2")
-    pos.calculatePosition()
-    pos3 = Pos(t, 0.7, 0.5, 11, 1000, 90, 11, 8, lambda t: 8 * t - 1, 0, 0, 0)
-    print("Example 3")
-    pos.calculatePosition()
+    pos2.calculatePosition()
